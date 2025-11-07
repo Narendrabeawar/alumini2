@@ -637,7 +637,7 @@ export default function LandingContent() {
               <p className="text-xl text-blue-50 mb-8">
                 Join thousands of alumni already connected in our directory
               </p>
-              <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-6 text-lg font-semibold">
+              <Button asChild size="lg" className="bg-white dark:bg-zinc-900 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-zinc-800 px-8 py-6 text-lg font-semibold">
                 <Link href="/register">Create Your Profile</Link>
               </Button>
             </motion.div>
