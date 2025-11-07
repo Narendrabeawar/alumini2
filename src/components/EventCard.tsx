@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { format } from "date-fns";
+import { CountdownTimer } from "@/components/CountdownTimer";
 
 interface EventCardProps {
   event: {
@@ -62,6 +63,12 @@ export function EventCard({ event }: EventCardProps) {
             <Calendar className="w-4 h-4 text-blue-600" />
             <span>{format(eventDate, "PPP 'at' p")}</span>
           </div>
+
+          {!isPast && (
+            <div className="mt-3 pt-3 border-t border-zinc-200 dark:border-zinc-700">
+              <CountdownTimer eventDate={event.event_date} />
+            </div>
+          )}
 
           {event.event_end_date && (
             <div className="flex items-center gap-2">

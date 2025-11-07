@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { 
   Users, Upload, Mail, Home, List, UserPlus,
-  UserCircle, FileText, Globe, Settings, CheckCircle2, Calendar, CalendarPlus
+  UserCircle, Settings, Calendar, CalendarPlus
 } from "lucide-react";
 
 interface NavItemProps {
@@ -76,12 +76,6 @@ export function AdminNav({ pendingCount }: { pendingCount: number }) {
       <NavSection title="My Account">
         <NavItem href="/profile" icon={UserCircle} label="My Profile" />
         <NavItem href="/profile/setup" icon={Settings} label="Profile Setup" />
-      </NavSection>
-
-      <NavSection title="Public Pages">
-        <NavItem href="/" icon={Globe} label="Home Page" />
-        <NavItem href="/login" icon={CheckCircle2} label="Login Page" />
-        <NavItem href="/register" icon={FileText} label="Register Page" />
       </NavSection>
     </nav>
   );
