@@ -50,20 +50,42 @@ export async function POST(request: NextRequest) {
 
     const batchId = batch?.id || (await supabase.from("import_batches").select("id").order("created_at", { ascending: false }).limit(1).single()).data?.id;
 
+    // Prepare imported_alumni data
+    const importedData: any = {
+      batch_id: batchId,
+      external_id: `MANUAL_${Date.now()}`,
+      full_name: body.fullName,
+      email: body.email,
+      grad_year: body.gradYear ? parseInt(body.gradYear) : null,
+      department: body.department,
+      company: body.currentCompany,
+      role: body.currentTitle,
+      headline: body.headline || null,
+      bio: body.bio || null,
+      location: body.location || null,
+      father_name: body.fatherName || null,
+      primary_mobile: body.primaryMobile || null,
+      whatsapp_number: body.whatsappNumber || null,
+      linkedin_url: body.linkedinUrl || null,
+      twitter_url: body.twitterUrl || null,
+      facebook_url: body.facebookUrl || null,
+      instagram_url: body.instagramUrl || null,
+      github_url: body.githubUrl || null,
+      website_url: body.websiteUrl || null,
+      invite_status: "pending",
+    };
+
+    // Add avatar_url if provided (we'll store it in a JSONB field or add column if needed)
+    // For now, we'll store it in a metadata field or add avatar_url column
+    // Let's try to add it directly - if column doesn't exist, we'll handle it
+    if (body.avatarUrl) {
+      importedData.avatar_url = body.avatarUrl;
+    }
+
     // Add to imported_alumni
     const { data: imported, error: importError } = await supabase
       .from("imported_alumni")
-      .insert({
-        batch_id: batchId,
-        external_id: `MANUAL_${Date.now()}`,
-        full_name: body.fullName,
-        email: body.email,
-        grad_year: body.gradYear ? parseInt(body.gradYear) : null,
-        department: body.department,
-        company: body.currentCompany,
-        role: body.currentTitle,
-        invite_status: "pending",
-      })
+      .insert(importedData)
       .select()
       .single();
 

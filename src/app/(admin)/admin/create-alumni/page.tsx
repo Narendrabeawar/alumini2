@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { Plus, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { showToast } from "@/lib/toast";
+import AdminImageUploader from "@/components/AdminImageUploader";
 
 export default function CreateAlumniPage() {
   const router = useRouter();
@@ -37,6 +38,7 @@ export default function CreateAlumniPage() {
     instagramUrl: "",
     githubUrl: "",
     websiteUrl: "",
+    avatarUrl: null as string | null,
   });
 
   const [education, setEducation] = useState<Array<{ degree: string; institution: string; year: string }>>([]);
@@ -113,6 +115,7 @@ export default function CreateAlumniPage() {
           instagramUrl: formData.instagramUrl,
           githubUrl: formData.githubUrl,
           websiteUrl: formData.websiteUrl,
+          avatarUrl: formData.avatarUrl,
           education,
           workHistory,
           skills,
@@ -127,9 +130,11 @@ export default function CreateAlumniPage() {
 
       showToast.success("Alumni created successfully!");
       setSuccess(true);
+      
+      // Show success message for 3 seconds before redirecting
       setTimeout(() => {
         router.push("/admin/invites");
-      }, 2000);
+      }, 3000);
     } catch (err: any) {
       const errorMessage = err.message || "Failed to create alumni";
       setError(errorMessage);
@@ -139,23 +144,6 @@ export default function CreateAlumniPage() {
     }
   }
 
-  if (success) {
-    return (
-      <div className="max-w-4xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-green-50 border border-green-200 rounded-lg p-8 text-center"
-        >
-          <h2 className="text-2xl font-semibold mb-2 text-green-800">Alumni Added Successfully!</h2>
-          <p className="text-green-700 mb-4">
-            The alumni has been added to the imported list. You can now send an invitation from the Invites page.
-          </p>
-          <p className="text-sm text-green-600">Redirecting to Invites page...</p>
-        </motion.div>
-      </div>
-    );
-  }
 
   return (
     <div className="max-w-4xl">
@@ -173,6 +161,15 @@ export default function CreateAlumniPage() {
         {/* Basic Information */}
         <div className="bg-white rounded-lg border border-zinc-200 p-6 space-y-4">
           <h2 className="text-xl font-semibold mb-4">Basic Information</h2>
+          
+          {/* Image Upload */}
+          <div className="space-y-2">
+            <Label>Profile Image</Label>
+            <AdminImageUploader
+              value={formData.avatarUrl}
+              onChange={(path) => setFormData({ ...formData, avatarUrl: path })}
+            />
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
@@ -505,6 +502,28 @@ export default function CreateAlumniPage() {
           <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-800">
             {error}
           </div>
+        )}
+
+        {success && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-green-50 border-2 border-green-400 rounded-lg p-6 text-green-800"
+          >
+            <div className="flex items-center gap-3">
+              <div className="flex-shrink-0">
+                <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold text-lg text-green-900 mb-1">Successfully Saved!</h3>
+                <p className="text-green-700">
+                  Alumni has been added to the imported list. Redirecting to Invites page...
+                </p>
+              </div>
+            </div>
+          </motion.div>
         )}
 
         <div className="flex gap-4">

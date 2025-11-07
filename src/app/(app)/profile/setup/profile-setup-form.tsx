@@ -72,7 +72,7 @@ export default function ProfileSetupForm({ userId }: ProfileSetupFormProps) {
             setFormData({
               fullName: imported.full_name || "",
               fatherName: imported.father_name || "",
-              avatarUrl: "",
+              avatarUrl: imported.avatar_url || "",
               headline: imported.headline || "",
               bio: imported.bio || "",
               gradYear: imported.grad_year?.toString() || "",
@@ -94,11 +94,18 @@ export default function ProfileSetupForm({ userId }: ProfileSetupFormProps) {
               websiteUrl: imported.website_url || "",
             });
 
-            // Also update profile name
+            // Also update profile name and avatar if available
+            const profileUpdate: any = {};
             if (imported.full_name) {
+              profileUpdate.full_name = imported.full_name;
+            }
+            if (imported.avatar_url) {
+              profileUpdate.avatar_url = imported.avatar_url;
+            }
+            if (Object.keys(profileUpdate).length > 0) {
               await supabase
                 .from("profiles")
-                .update({ full_name: imported.full_name })
+                .update(profileUpdate)
                 .eq("id", userId);
             }
           }

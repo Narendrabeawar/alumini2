@@ -114,6 +114,7 @@
         instagram_url text,
         github_url text,
         website_url text,
+        avatar_url text,
         CONSTRAINT imported_alumni_invite_status_chk CHECK (invite_status = ANY (ARRAY['none'::text, 'sent'::text, 'accepted'::text, 'bounced'::text, 'expired'::text]))
     );
 
@@ -625,6 +626,108 @@
     CREATE POLICY "work_read_if_approved" ON public.work_history FOR SELECT TO public USING (((EXISTS ( SELECT 1
     FROM admin_flags f
     WHERE ((f.user_id = work_history.user_id) AND (f.status = 'approved'::text)))) OR (( SELECT auth.uid() AS uid) = user_id)));
+
+    -- ========== ADDITIONAL FEATURES: JOBS, GALLERY, NEWS ==========
+
+    CREATE TABLE IF NOT EXISTS public.jobs (
+        id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+        title text NOT NULL,
+        company text NOT NULL,
+        description text,
+        location text,
+        job_type text CHECK (job_type IN ('full-time', 'part-time', 'contract', 'internship', 'freelance')),
+        salary_range text,
+        application_url text,
+        application_email text,
+        posted_by uuid REFERENCES public.profiles(id) ON DELETE SET NULL,
+        is_published boolean NOT NULL DEFAULT true,
+        expires_at timestamptz,
+        created_at timestamptz NOT NULL DEFAULT now(),
+        updated_at timestamptz NOT NULL DEFAULT now()
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_jobs_is_published ON public.jobs(is_published) WHERE is_published = true;
+    CREATE INDEX IF NOT EXISTS idx_jobs_expires_at ON public.jobs(expires_at);
+    CREATE INDEX IF NOT EXISTS idx_jobs_company ON public.jobs(company);
+    CREATE INDEX IF NOT EXISTS idx_jobs_job_type ON public.jobs(job_type);
+
+    CREATE TABLE IF NOT EXISTS public.gallery_items (
+        id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+        title text NOT NULL,
+        description text,
+        image_url text NOT NULL,
+        category text,
+        event_id uuid REFERENCES public.events(id) ON DELETE SET NULL,
+        uploaded_by uuid REFERENCES public.profiles(id) ON DELETE SET NULL,
+        is_published boolean NOT NULL DEFAULT true,
+        created_at timestamptz NOT NULL DEFAULT now()
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_gallery_is_published ON public.gallery_items(is_published) WHERE is_published = true;
+    CREATE INDEX IF NOT EXISTS idx_gallery_category ON public.gallery_items(category);
+    CREATE INDEX IF NOT EXISTS idx_gallery_event_id ON public.gallery_items(event_id);
+    CREATE INDEX IF NOT EXISTS idx_gallery_created_at ON public.gallery_items(created_at DESC);
+
+    CREATE TABLE IF NOT EXISTS public.news (
+        id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+        title text NOT NULL,
+        slug text UNIQUE,
+        excerpt text,
+        content text NOT NULL,
+        featured_image_url text,
+        author_id uuid REFERENCES public.profiles(id) ON DELETE SET NULL,
+        category text,
+        tags text[],
+        is_published boolean NOT NULL DEFAULT false,
+        published_at timestamptz,
+        created_at timestamptz NOT NULL DEFAULT now(),
+        updated_at timestamptz NOT NULL DEFAULT now()
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_news_is_published ON public.news(is_published) WHERE is_published = true;
+    CREATE INDEX IF NOT EXISTS idx_news_published_at ON public.news(published_at DESC);
+    CREATE INDEX IF NOT EXISTS idx_news_category ON public.news(category);
+    CREATE INDEX IF NOT EXISTS idx_news_slug ON public.news(slug);
+
+    ALTER TABLE public.jobs ENABLE ROW LEVEL SECURITY;
+    CREATE POLICY "Anyone can view published jobs" ON public.jobs FOR SELECT USING (is_published = true AND (expires_at IS NULL OR expires_at > now()));
+    CREATE POLICY "Admins can manage jobs" ON public.jobs FOR ALL USING (public.is_admin());
+
+    ALTER TABLE public.gallery_items ENABLE ROW LEVEL SECURITY;
+    CREATE POLICY "Anyone can view published gallery items" ON public.gallery_items FOR SELECT USING (is_published = true);
+    CREATE POLICY "Admins can manage gallery" ON public.gallery_items FOR ALL USING (public.is_admin());
+
+    ALTER TABLE public.news ENABLE ROW LEVEL SECURITY;
+    CREATE POLICY "Anyone can view published news" ON public.news FOR SELECT USING (is_published = true AND published_at IS NOT NULL AND published_at <= now());
+    CREATE POLICY "Admins can manage news" ON public.news FOR ALL USING (public.is_admin());
+
+    -- ========== STORAGE: AVATARS BUCKET AND POLICIES ==========
+    -- Create the avatars bucket with public access
+    INSERT INTO storage.buckets (id, name, public)
+    VALUES ('avatars', 'avatars', true)
+    ON CONFLICT (id) DO UPDATE
+      SET public = true, name = 'avatars';
+
+    -- Public read for avatars (anyone can view images)
+    DROP POLICY IF EXISTS "Public read avatars" ON storage.objects;
+    CREATE POLICY "Public read avatars" ON storage.objects
+      FOR SELECT USING (bucket_id = 'avatars');
+
+    -- Authenticated users can upload to avatars (any authenticated user can upload)
+    DROP POLICY IF EXISTS "Users upload avatars" ON storage.objects;
+    CREATE POLICY "Users upload avatars" ON storage.objects
+      FOR INSERT WITH CHECK (bucket_id = 'avatars');
+
+    -- Users can update avatar objects (allows admin to update any avatar)
+    DROP POLICY IF EXISTS "Users update avatars" ON storage.objects;
+    CREATE POLICY "Users update avatars" ON storage.objects
+      FOR UPDATE USING (bucket_id = 'avatars')
+      WITH CHECK (bucket_id = 'avatars');
+
+    -- Users can delete avatar objects (allows admin to delete any avatar)
+    DROP POLICY IF EXISTS "Users delete avatars" ON storage.objects;
+    CREATE POLICY "Users delete avatars" ON storage.objects
+      FOR DELETE USING (bucket_id = 'avatars');
 
     COMMIT;
 
