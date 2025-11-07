@@ -316,7 +316,7 @@ export default function LandingContent() {
             transition={{ duration: 0.6 }}
           >
             <motion.h1
-              className="text-5xl md:text-6xl font-extrabold mb-3 text-blue-900 dark:text-blue-700"
+              className="text-5xl md:text-6xl font-extrabold mb-3 text-blue-900 dark:text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
@@ -324,7 +324,7 @@ export default function LandingContent() {
               Zexa Tech School, Ajmer Rajasthan
             </motion.h1>
             <motion.p
-              className="text-2xl md:text-3xl font-semibold text-blue-900 dark:text-blue-700 mb-6"
+              className="text-2xl md:text-3xl font-semibold text-blue-900 dark:text-white mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25, duration: 0.6 }}
@@ -332,7 +332,7 @@ export default function LandingContent() {
               Alumni Directory
             </motion.p>
             <motion.p
-              className="text-xl md:text-2xl text-blue-800 dark:text-blue-600 mb-10 max-w-3xl mx-auto leading-relaxed"
+              className="text-xl md:text-2xl text-blue-800 dark:text-zinc-200 mb-10 max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
