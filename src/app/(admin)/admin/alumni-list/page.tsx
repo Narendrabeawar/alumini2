@@ -19,7 +19,7 @@ async function getApprovedAlumniPage(pageParam?: string | null) {
 
     if (flagsError) {
       console.error("Error fetching approved flags:", flagsError);
-      return [];
+      return { data: [], count: 0, page };
     }
 
     if (!approvedFlags || approvedFlags.length === 0) {

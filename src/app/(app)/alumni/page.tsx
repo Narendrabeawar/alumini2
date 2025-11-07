@@ -54,7 +54,7 @@ async function getAlumni(params: { q?: string | null; page?: string | null; year
     }
 
     // Count with filters (server-side)
-    const { count, error: countError } = await baseQuery.select("id", { count: "exact", head: true });
+    const { count, error: countError } = await baseQuery.select("*", { count: "exact", head: true });
     if (countError) {
       console.error("Error counting alumni:", countError);
       return { data: [], count: 0, page: pageNum };
