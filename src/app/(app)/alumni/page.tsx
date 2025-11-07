@@ -18,6 +18,16 @@ async function getAlumni(params: { q?: string | null; page?: string | null; year
   const to = from + PAGE_SIZE - 1;
 
   try {
+    // Build count query separately (without select fields)
+    let countQuery = supabase
+      .from("alumni_details")
+      .select("*", { count: "exact", head: true });
+
+    // Apply filters to count query
+    if (year) countQuery = countQuery.eq("grad_year", Number(year));
+    if (dept) countQuery = countQuery.ilike("department", `%${dept}%`);
+    if (company) countQuery = countQuery.ilike("current_company", `%${company}%`);
+
     // Base filtered query builder (without pagination)
     let baseQuery = supabase
       .from("alumni_details")
@@ -50,11 +60,13 @@ async function getAlumni(params: { q?: string | null; page?: string | null; year
       if (nameIds.length) {
         orParts.unshift(`id.in.${idsList}`);
       }
-      baseQuery = baseQuery.or(orParts.join(","));
+      const orFilter = orParts.join(",");
+      countQuery = countQuery.or(orFilter);
+      baseQuery = baseQuery.or(orFilter);
     }
 
     // Count with filters (server-side)
-    const { count, error: countError } = await baseQuery.select("*", { count: "exact", head: true });
+    const { count, error: countError } = await countQuery;
     if (countError) {
       console.error("Error counting alumni:", countError);
       return { data: [], count: 0, page: pageNum };

@@ -11,6 +11,7 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-progress": "^1.1.0",
+    "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.2.3",
     "@sentry/nextjs": "^10.23.0",
     "@supabase/ssr": "^0.7.0",

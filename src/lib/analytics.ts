@@ -8,7 +8,7 @@ export type AnalyticsEventName =
   | "event_register_submit"
   | "event_register_success";
 
-export function trackEvent(name: AnalyticsEventName, props?: Record<string, unknown>) {
+export function trackEvent(name: AnalyticsEventName, props?: Record<string, string | number | boolean>) {
   try {
     track(name, props);
   } catch {

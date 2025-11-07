@@ -13,7 +13,15 @@ async function loadData(userId: string) {
     supabase.from("work_history").select("id,company,role,start_date,end_date,description").eq("user_id", userId).order("start_date", { ascending: true }),
     supabase.from("skills").select("id,name").eq("user_id", userId).order("name"),
   ]);
-  return { profile, details, education: education ?? [], work: work ?? [], skills: skills ?? [] };
+  
+  // Map current_title to current_role and include all fields for compatibility
+  const mappedDetails = details ? {
+    ...details,
+    current_role: details.current_title,
+    father_name: details.father_name,
+  } : null;
+  
+  return { profile, details: mappedDetails, education: education ?? [], work: work ?? [], skills: skills ?? [] };
 }
 
 export default async function ProfilePage() {

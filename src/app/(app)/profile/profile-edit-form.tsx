@@ -26,6 +26,7 @@ interface InitialData {
     current_company: string | null;
     current_role: string | null;
     location: string | null;
+    father_name: string | null;
     primary_mobile: string | null;
     whatsapp_number: string | null;
     linkedin_url: string | null;
@@ -80,7 +81,7 @@ export default function ProfileEditForm({ userId, initialData }: { userId: strin
   const [gradYear, setGradYear] = useState(initialData.details?.grad_year?.toString() ?? "");
   const [department, setDepartment] = useState(initialData.details?.department ?? "");
   const [company, setCompany] = useState(initialData.details?.current_company ?? "");
-  const [role, setRole] = useState(initialData.details?.current_title ?? "");
+  const [role, setRole] = useState(initialData.details?.current_role ?? "");
   const [location, setLocation] = useState(initialData.details?.location ?? "");
   const [fatherName, setFatherName] = useState(initialData.details?.father_name ?? "");
   const [primaryMobile, setPrimaryMobile] = useState(initialData.details?.primary_mobile ?? "");

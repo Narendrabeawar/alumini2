@@ -104,7 +104,7 @@ export default async function EventDetailPage({
   const attendeesWithAvatars = await Promise.all(
     attendees.map(async (attendee: any) => {
       if (attendee.user?.avatar_url) {
-        const avatarUrl = await getAvatarPublicUrl(attendee.user.avatar_url);
+        const avatarUrl = await getAvatarPublicUrl(supabase, attendee.user.avatar_url);
         return { ...attendee, user: { ...attendee.user, avatar_url: avatarUrl } };
       }
       return attendee;
