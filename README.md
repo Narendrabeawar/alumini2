@@ -5,6 +5,7 @@ A comprehensive alumni management system built with Next.js, TypeScript, and Sup
 ## ✨ Features
 
 ### 👥 User Features
+
 - **User Registration & Authentication** - Secure signup/login with email verification
 - **Profile Management** - Complete profile setup with education, work history, skills, and contact details
 - **Alumni Directory** - Browse and search through all approved alumni with advanced filters
@@ -12,6 +13,7 @@ A comprehensive alumni management system built with Next.js, TypeScript, and Sup
 - **Dashboard** - User-friendly dashboard with quick access to all features
 
 ### 🔐 Admin Features
+
 - **Pending Approvals** - Review and approve/reject new alumni registrations
 - **Create Alumni** - Manually create alumni profiles
 - **Import Alumni** - Bulk import alumni data via CSV/Excel
@@ -56,12 +58,14 @@ school/
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
-   git clone https://github.com/Narendrabeawar/alumini-project.git
-   cd alumini-project
+   git clone https://github.com/Narendrabeawar/alumini2.git
+   cd alumini2
    ```
 
 2. **Install dependencies**
+
    ```bash
    cd web
    npm install
@@ -70,20 +74,22 @@ school/
    ```
 
 3. **Set up environment variables**
-   
+
    Create a `.env.local` file in the `web` directory:
+
    ```env
    NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
    NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
    ```
 
 4. **Set up the database**
-   
+
    - Go to your Supabase project SQL Editor
    - Run `final_setup.sql` to create all tables, RLS policies, functions, and triggers
    - Run `make_admin.sql` to create your first admin user (update the email in the script)
 
 5. **Run the development server**
+
    ```bash
    npm run dev
    # or
@@ -91,7 +97,7 @@ school/
    ```
 
 6. **Open your browser**
-   
+
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 📝 Database Setup
@@ -99,6 +105,7 @@ school/
 ### Run SQL Scripts
 
 1. **Final Setup** (`final_setup.sql`)
+
    - Creates all database tables
    - Sets up Row Level Security (RLS) policies
    - Creates helper functions and triggers
@@ -119,17 +126,20 @@ school/
 ## 📄 Key Pages
 
 ### Public Pages
+
 - `/` - Landing page
 - `/login` - Login page
 - `/register` - Registration page
 
 ### User Pages (After Approval)
+
 - `/dashboard` - User dashboard
 - `/profile` - Edit own profile
 - `/alumni` - Browse alumni directory
 - `/alumni/[id]` - View alumni details
 
 ### Admin Pages
+
 - `/admin/alumni` - Pending approvals
 - `/admin/create-alumni` - Create new alumni
 - `/admin/import` - Import alumni data
@@ -146,6 +156,7 @@ school/
 ## 📦 Features in Detail
 
 ### Profile Management
+
 - Personal information (name, avatar, bio)
 - Education history
 - Work experience
@@ -153,12 +164,14 @@ school/
 - Contact details (phone, WhatsApp, social media links)
 
 ### Alumni Directory
+
 - Search functionality
 - Filter by graduation year, department, company
 - Pagination
 - Responsive card layout
 
 ### Admin Dashboard
+
 - Pending approvals management
 - Bulk import/export
 - Invite code generation
@@ -193,4 +206,3 @@ Narendra Beawar
 ---
 
 **Happy Coding! 🚀**
-

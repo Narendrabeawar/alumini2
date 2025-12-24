@@ -106,14 +106,14 @@ export default function LoginPage() {
     const emailParam = searchParams.get("email");
     const inviteParam = searchParams.get("invite");
     return (
-      <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] px-4 py-12">
+      <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] px-4 py-8 sm:py-12">
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="w-full max-w-md rounded-2xl border border-green-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm shadow-lg p-8 text-center"
+          className="w-full max-w-md rounded-2xl border border-green-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm shadow-lg p-6 sm:p-8 text-center"
         >
-          <h2 className="text-2xl font-semibold mb-3 bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent">Check Your Email</h2>
-          <p className="text-zinc-700 dark:text-zinc-300">
+          <h2 className="text-xl sm:text-2xl font-semibold mb-3 bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent">Check Your Email</h2>
+          <p className="text-sm sm:text-base text-zinc-700 dark:text-zinc-300">
             {emailParam ? (
               <>We've sent a magic link to <strong>{emailParam}</strong>. Click the link to login.</>
             ) : (
@@ -126,38 +126,38 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] px-4 py-12">
+    <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] px-4 py-8 sm:py-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
         className="w-full max-w-md"
       >
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-extrabold bg-gradient-to-r from-blue-700 via-green-600 to-blue-800 bg-clip-text text-transparent mb-2">
+        <div className="mb-6 sm:mb-8 text-center">
+          <h1 className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-blue-700 via-green-600 to-blue-800 bg-clip-text text-transparent mb-2">
             Welcome Back
           </h1>
-          <p className="text-zinc-600 dark:text-zinc-400">Login to your alumni account</p>
+          <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400">Login to your alumni account</p>
         </div>
 
-        <div className="rounded-2xl border border-blue-100 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm shadow-lg p-6">
+        <div className="rounded-2xl border border-blue-100 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm shadow-lg p-4 sm:p-6">
           {/* Mode selector */}
-          <div className="mb-6 flex gap-1 border-b border-zinc-200 dark:border-zinc-800">
+          <div className="mb-4 sm:mb-6 flex gap-1 border-b border-zinc-200 dark:border-zinc-800 overflow-x-auto">
             <button
               type="button"
               onClick={() => setMode("password")}
-              className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
+              className={`flex-1 px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
                 mode === "password"
                   ? "border-b-2 border-blue-600 text-blue-600 font-semibold"
                   : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300"
               }`}
             >
-              Password Login
+              Password
             </button>
             <button
               type="button"
               onClick={() => setMode("magic")}
-              className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
+              className={`flex-1 px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
                 mode === "magic"
                   ? "border-b-2 border-green-600 text-green-600 font-semibold"
                   : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300"
@@ -168,13 +168,13 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => setMode("invite")}
-              className={`flex-1 px-4 py-3 text-sm font-medium transition-colors ${
+              className={`flex-1 px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
                 mode === "invite"
                   ? "border-b-2 border-blue-600 text-blue-600 font-semibold"
                   : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300"
               }`}
             >
-              Admin Invite
+              Invite
             </button>
           </div>
 

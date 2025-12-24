@@ -17,18 +17,18 @@ export function ApproveButton({ userId }: { userId: string }) {
       const response = await fetch("/api/approval/promote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId }),
+        body: JSON.stringify({ user_id: userId }),
       });
 
       if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || "Failed to approve");
+        const error = await response.json().catch(() => ({}));
+        throw new Error(error?.message || error?.error || "Failed to approve");
       }
 
       showToast.success("Alumni profile approved successfully!");
       router.refresh();
     } catch (error: any) {
-      showToast.error(error.message || "Failed to approve profile");
+      showToast.error(error?.message || "Failed to approve profile");
     } finally {
       setLoading(false);
     }

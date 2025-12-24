@@ -176,7 +176,7 @@ export default function CreateEventPage() {
                 id="location"
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                placeholder="Ajmer, Rajasthan"
+                placeholder="Kolkata"
               />
             </div>
           </div>

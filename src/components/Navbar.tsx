@@ -67,8 +67,8 @@ export default function Navbar() {
             className="flex flex-col items-center justify-center px-5 xl:px-7 py-3 xl:py-4 bg-blue-900 dark:bg-zinc-900 rounded-lg border border-blue-800 dark:border-zinc-800 hover:bg-blue-800 transition-colors shrink-0 shadow-xl min-w-[220px] xl:min-w-[260px]"
           >
             <div className="text-xs xl:text-sm text-green-400 font-medium tracking-widest uppercase mb-1 whitespace-nowrap">alumni</div>
-            <div className="text-xl xl:text-2xl font-bold text-white tracking-tight text-center whitespace-nowrap">ZEXA TECH SCHOOL</div>
-            <div className="text-xs xl:text-sm text-blue-200 dark:text-zinc-400 font-light whitespace-nowrap">Ajmer, Rajasthan</div>
+            <div className="text-xl xl:text-2xl font-bold text-white tracking-tight text-center whitespace-nowrap">The Heritage School</div>
+            <div className="text-xs xl:text-sm text-blue-200 dark:text-zinc-400 font-light whitespace-nowrap">Kolkata</div>
           </Link>
 
           {/* Left Navigation Links */}
@@ -189,7 +189,7 @@ export default function Navbar() {
         <div className="lg:hidden flex items-center justify-between h-16">
           <Link href="/" className="flex flex-col items-start">
             <div className="text-xs text-green-400 font-medium tracking-widest uppercase">alumni</div>
-            <div className="text-lg font-bold text-white">ZEXA TECH SCHOOL</div>
+            <div className="text-lg font-bold text-white">THE HERITAGE SCHOOL</div>
           </Link>
 
           <div className="flex items-center gap-2">

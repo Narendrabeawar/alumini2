@@ -21,18 +21,18 @@ export function RejectButton({ userId }: { userId: string }) {
       const response = await fetch("/api/approval/reject", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId }),
+        body: JSON.stringify({ user_id: userId }),
       });
 
       if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || "Failed to reject");
+        const error = await response.json().catch(() => ({}));
+        throw new Error(error?.message || error?.error || "Failed to reject");
       }
 
       showToast.success("Profile rejected successfully");
       router.refresh();
     } catch (error: any) {
-      showToast.error(error.message || "Failed to reject profile");
+      showToast.error(error?.message || "Failed to reject profile");
     } finally {
       setLoading(false);
     }

@@ -179,26 +179,26 @@ export default async function AlumniList({ searchParams }: { searchParams: Promi
   const hasFilters = !!(year || dept || company || q);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
         <div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent">
+          <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent">
             Alumni Directory
           </h1>
-          <p className="text-zinc-600 mt-1">Connect with your fellow graduates</p>
+          <p className="text-sm sm:text-base text-zinc-600 mt-1">Connect with your fellow graduates</p>
         </div>
-        <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-lg border border-blue-200">
-          <Users className="w-5 h-5 text-blue-600" />
-          <span className="text-sm font-semibold text-blue-900">{count}</span>
-          <span className="text-sm text-blue-700">alumni</span>
+        <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-blue-50 rounded-lg border border-blue-200">
+          <Users className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
+          <span className="text-xs sm:text-sm font-semibold text-blue-900">{count}</span>
+          <span className="text-xs sm:text-sm text-blue-700">alumni</span>
         </div>
       </div>
 
       {/* Search and Filters */}
       <Card className="border-zinc-200">
-        <CardContent className="p-4">
-          <div className="flex flex-col md:flex-row gap-4">
+        <CardContent className="p-3 sm:p-4">
+          <div className="flex flex-col md:flex-row gap-3 sm:gap-4">
             <div className="flex-1">
               <SearchBar />
             </div>
@@ -210,7 +210,7 @@ export default async function AlumniList({ searchParams }: { searchParams: Promi
       {/* Active Filters */}
       {hasFilters && (
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-sm text-zinc-600">Active filters:</span>
+          <span className="text-xs sm:text-sm text-zinc-600">Active filters:</span>
           {q && (
             <span className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full border border-blue-200">
               Search: {q}
@@ -243,7 +243,7 @@ export default async function AlumniList({ searchParams }: { searchParams: Promi
       {/* Results */}
       {data.length > 0 ? (
         <>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {data.map((row: any) => (
               <AlumniCard
                 key={row.id}
@@ -261,7 +261,7 @@ export default async function AlumniList({ searchParams }: { searchParams: Promi
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-2 pt-6">
+            <div className="flex items-center justify-center gap-1 sm:gap-2 pt-4 sm:pt-6 flex-wrap">
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
                 const params = new URLSearchParams();
                 if (q) params.set("q", q);
@@ -274,7 +274,7 @@ export default async function AlumniList({ searchParams }: { searchParams: Promi
                   <a
                     key={pageNum}
                     href={`/alumni?${params.toString()}`}
-                    className={`px-4 py-2 rounded-lg border transition-colors ${
+                    className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg border transition-colors text-sm ${
                       Number(page) === pageNum || (!page && pageNum === 1)
                         ? "bg-blue-600 text-white border-blue-600"
                         : "bg-white text-zinc-700 border-zinc-200 hover:bg-zinc-50"

@@ -57,21 +57,21 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] px-4 py-12">
+    <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] px-4 py-8 sm:py-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
         className="w-full max-w-md"
       >
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-extrabold bg-gradient-to-r from-blue-700 via-green-600 to-blue-800 bg-clip-text text-transparent">
+        <div className="mb-6 sm:mb-8 text-center">
+          <h1 className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-blue-700 via-green-600 to-blue-800 bg-clip-text text-transparent">
             Create your alumni account
           </h1>
-          <p className="text-zinc-600 mt-2">Join Zexa Tech School, Ajmer Rajasthan alumni community</p>
+          <p className="text-sm sm:text-base text-zinc-600 mt-2">Join The Heritage School Kolkata alumni community</p>
         </div>
 
-        <div className="rounded-2xl border border-blue-100 bg-white/90 backdrop-blur-sm shadow-lg p-6 dark:border-zinc-800 dark:bg-zinc-900/80">
+        <div className="rounded-2xl border border-blue-100 bg-white/90 backdrop-blur-sm shadow-lg p-4 sm:p-6 dark:border-zinc-800 dark:bg-zinc-900/80">
           {success ? (
             <div className="text-center">
               <div className="rounded-lg border border-green-200 bg-green-50 p-5">

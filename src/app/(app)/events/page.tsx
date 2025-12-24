@@ -35,22 +35,22 @@ export default async function EventsPage() {
   const pastEvents = events.filter((e) => new Date(e.event_date) < new Date());
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent mb-2">
+    <div className="container mx-auto px-4 py-6 sm:py-8">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-700 to-green-600 bg-clip-text text-transparent mb-2">
           Events
         </h1>
-        <p className="text-zinc-600">
+        <p className="text-sm sm:text-base text-zinc-600">
           Stay updated with our latest events and gatherings
         </p>
       </div>
 
       {upcomingEvents.length > 0 && (
-        <div className="mb-12">
-          <h2 className="text-2xl font-semibold text-zinc-900 mb-6">
+        <div className="mb-8 sm:mb-12">
+          <h2 className="text-xl sm:text-2xl font-semibold text-zinc-900 mb-4 sm:mb-6">
             Upcoming Events
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {upcomingEvents.map((event) => (
               <EventCard key={event.id} event={event} />
             ))}
@@ -60,10 +60,10 @@ export default async function EventsPage() {
 
       {pastEvents.length > 0 && (
         <div>
-          <h2 className="text-2xl font-semibold text-zinc-900 mb-6">
+          <h2 className="text-xl sm:text-2xl font-semibold text-zinc-900 mb-4 sm:mb-6">
             Past Events
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {pastEvents.map((event) => (
               <EventCard key={event.id} event={event} />
             ))}

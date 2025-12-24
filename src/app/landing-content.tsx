@@ -134,11 +134,11 @@ function CountdownTimer({ eventDate }: { eventDate: string }) {
   ];
 
   return (
-    <div className="flex gap-4 justify-center">
+    <div className="flex gap-2 sm:gap-3 md:gap-4 justify-center flex-wrap">
       {timeUnits.map((unit) => (
         <div key={unit.label} className="text-center">
-          <div className="bg-white/90 dark:bg-zinc-800 rounded-lg px-4 py-3 min-w-[70px] shadow-md">
-            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+          <div className="bg-white/90 dark:bg-zinc-800 rounded-lg px-3 py-2 sm:px-4 sm:py-3 min-w-[60px] sm:min-w-[70px] shadow-md">
+            <div className="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400">
               {String(unit.value).padStart(2, "0")}
             </div>
             <div className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">{unit.label}</div>
@@ -231,7 +231,7 @@ export default function LandingContent() {
         <div aria-hidden className="pointer-events-none absolute -bottom-24 -right-24 h-[28rem] w-[28rem] rounded-full bg-gradient-to-tr from-green-400/20 to-blue-400/20 blur-3xl" />
         
         {/* Hero Section - Part 1: Scrolling Images Left to Right */}
-        <div className="h-[calc(50vh-2rem)] relative overflow-hidden">
+        <div className="h-[200px] sm:h-[250px] md:h-[300px] lg:h-[calc(50vh-2rem)] relative overflow-hidden">
           <div className="absolute inset-0 flex animate-scroll-left">
             {[
               "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&q=80",
@@ -241,7 +241,7 @@ export default function LandingContent() {
               "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1920&q=80",
               "https://images.unsplash.com/photo-1529390079861-591de354faf5?w=1920&q=80",
             ].map((url, idx) => (
-              <div key={idx} className="relative h-full w-[400px] shrink-0 mx-2">
+              <div key={idx} className="relative h-full w-[250px] sm:w-[300px] md:w-[350px] lg:w-[400px] shrink-0 mx-1 sm:mx-2">
                 <ScrollingImage
                   src={url}
                   alt={`Alumni event ${idx + 1}`}
@@ -258,7 +258,7 @@ export default function LandingContent() {
               "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1920&q=80",
               "https://images.unsplash.com/photo-1529390079861-591de354faf5?w=1920&q=80",
             ].map((url, idx) => (
-              <div key={`dup-${idx}`} className="relative h-full w-[400px] shrink-0 mx-2">
+              <div key={`dup-${idx}`} className="relative h-full w-[250px] sm:w-[300px] md:w-[350px] lg:w-[400px] shrink-0 mx-1 sm:mx-2">
                 <ScrollingImage
                   src={url}
                   alt={`Alumni event ${idx + 1}`}
@@ -270,7 +270,7 @@ export default function LandingContent() {
         </div>
 
         {/* Hero Section - Part 2: Content with Scrolling Images Right to Left */}
-        <div className="h-[calc(50vh-2rem)] relative flex items-center justify-center px-4 py-20">
+        <div className="min-h-[400px] sm:min-h-[500px] md:min-h-[600px] lg:h-[calc(50vh-2rem)] relative flex items-center justify-center px-4 py-8 sm:py-12 md:py-16 lg:py-20">
           {/* Scrolling Images Background - Right to Left */}
           <div className="absolute inset-0 flex animate-scroll-right opacity-20">
             {[
@@ -281,7 +281,7 @@ export default function LandingContent() {
               "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1920&q=80",
               "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&q=80",
             ].map((url, idx) => (
-              <div key={idx} className="relative h-full w-[400px] shrink-0 mx-2">
+              <div key={idx} className="relative h-full w-[250px] sm:w-[300px] md:w-[350px] lg:w-[400px] shrink-0 mx-1 sm:mx-2">
                 <ScrollingImage
                   src={url}
                   alt={`Alumni gathering ${idx + 1}`}
@@ -298,7 +298,7 @@ export default function LandingContent() {
               "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1920&q=80",
               "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&q=80",
             ].map((url, idx) => (
-              <div key={`dup2-${idx}`} className="relative h-full w-[400px] shrink-0 mx-2">
+              <div key={`dup2-${idx}`} className="relative h-full w-[250px] sm:w-[300px] md:w-[350px] lg:w-[400px] shrink-0 mx-1 sm:mx-2">
                 <ScrollingImage
                   src={url}
                   alt={`Alumni gathering ${idx + 1}`}
@@ -310,21 +310,21 @@ export default function LandingContent() {
 
           {/* Content Overlay */}
           <motion.main
-            className="w-full max-w-6xl text-center relative z-10"
+            className="w-full max-w-6xl text-center relative z-10 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
             <motion.h1
-              className="text-5xl md:text-6xl font-extrabold mb-3 text-blue-900 dark:text-white"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-3 text-blue-900 dark:text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              Zexa Tech School, Ajmer Rajasthan
+              The Heritage School Kolkata
             </motion.h1>
             <motion.p
-              className="text-2xl md:text-3xl font-semibold text-blue-900 dark:text-white mb-6"
+              className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-blue-900 dark:text-white mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.25, duration: 0.6 }}
@@ -332,7 +332,7 @@ export default function LandingContent() {
               Alumni Directory
             </motion.p>
             <motion.p
-              className="text-xl md:text-2xl text-blue-800 dark:text-zinc-200 mb-10 max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-800 dark:text-zinc-200 mb-6 sm:mb-8 lg:mb-10 max-w-3xl mx-auto leading-relaxed px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
@@ -340,15 +340,15 @@ export default function LandingContent() {
               Connect with your fellow alumni. Search, discover, and stay connected with your alma mater community.
             </motion.p>
             <motion.div
-              className="flex gap-4 justify-center flex-wrap"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center flex-wrap px-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
-              <Button asChild size="lg" className="bg-blue-900 hover:bg-blue-800 dark:bg-blue-800 dark:hover:bg-blue-700 text-white px-8 py-6 text-lg">
+              <Button asChild size="lg" className="bg-blue-900 hover:bg-blue-800 dark:bg-blue-800 dark:hover:bg-blue-700 text-white w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg">
                 <Link href="/register">Get Started</Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-2 border-blue-900 text-blue-900 hover:bg-blue-50 dark:border-blue-700 dark:text-blue-700 dark:hover:bg-blue-900/20 px-8 py-6 text-lg">
+              <Button asChild variant="outline" size="lg" className="border-2 border-blue-900 text-blue-900 hover:bg-blue-50 dark:border-blue-700 dark:text-blue-700 dark:hover:bg-blue-900/20 w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg">
                 <Link href="/alumni">Browse Alumni</Link>
               </Button>
             </motion.div>
@@ -356,9 +356,9 @@ export default function LandingContent() {
         </div>
 
         {/* Stats Section */}
-        <div className="bg-white/80 dark:bg-zinc-900/70 backdrop-blur-sm py-16">
+        <div className="bg-white/80 dark:bg-zinc-900/70 backdrop-blur-sm py-8 sm:py-12 md:py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
               {[
                 { icon: Users, label: "Alumni Members", value: stats.alumni, color: "blue" },
                 { icon: Calendar, label: "Events", value: stats.events, color: "green" },
@@ -374,11 +374,11 @@ export default function LandingContent() {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1, duration: 0.5 }}
                   >
-                    <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-${stat.color}-100 dark:bg-${stat.color}-900 mb-4`}>
-                      <Icon className={`w-8 h-8 text-${stat.color}-600 dark:text-${stat.color}-400`} />
+                    <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-${stat.color}-100 dark:bg-${stat.color}-900 mb-3 sm:mb-4`}>
+                      <Icon className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-${stat.color}-600 dark:text-${stat.color}-400`} />
                     </div>
-                    <div className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">{stat.value}+</div>
-                    <div className="text-zinc-600 dark:text-zinc-400">{stat.label}</div>
+                    <div className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">{stat.value}+</div>
+                    <div className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400">{stat.label}</div>
                   </motion.div>
                 );
               })}
@@ -387,40 +387,40 @@ export default function LandingContent() {
         </div>
 
         {/* Features Section */}
-        <div className="bg-white/80 dark:bg-zinc-900/70 backdrop-blur-sm py-20">
+        <div className="bg-white/80 dark:bg-zinc-900/70 backdrop-blur-sm py-10 sm:py-16 md:py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <motion.div
-              className="text-center mb-16"
+              className="text-center mb-8 sm:mb-12 md:mb-16"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent px-2">
                 Why Join Our Directory?
               </h2>
-              <p className="text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto px-2">
                 Discover the benefits of being part of our alumni network
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
               {features.map((feature, index) => {
                 const Icon = feature.icon;
                 return (
                   <motion.div
                     key={feature.title}
-                    className="bg-white dark:bg-zinc-900 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow border border-green-100 dark:border-zinc-800"
+                    className="bg-white dark:bg-zinc-900 rounded-2xl p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow border border-green-100 dark:border-zinc-800"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1, duration: 0.5 }}
                   >
-                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-xl flex items-center justify-center mb-6">
-                      <Icon className="w-8 h-8 text-white" />
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-green-500 rounded-xl flex items-center justify-center mb-4 sm:mb-6">
+                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-semibold mb-3 text-zinc-900 dark:text-zinc-100">{feature.title}</h3>
-                    <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">{feature.description}</p>
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-zinc-900 dark:text-zinc-100">{feature.title}</h3>
+                    <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">{feature.description}</p>
                   </motion.div>
                 );
               })}
@@ -430,20 +430,20 @@ export default function LandingContent() {
 
         {/* Upcoming Events Section */}
         {upcomingEvents.length > 0 && (
-          <div className="bg-gradient-to-r from-blue-600 to-green-500 py-20">
+          <div className="bg-gradient-to-r from-blue-600 to-green-500 py-10 sm:py-16 md:py-20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <motion.div
-                className="text-center mb-12"
+                className="text-center mb-8 sm:mb-12"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Upcoming Events</h2>
-                <p className="text-xl text-blue-50">Don&apos;t miss out on our exciting alumni gatherings</p>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 px-2">Upcoming Events</h2>
+                <p className="text-base sm:text-lg md:text-xl text-blue-50 px-2">Don&apos;t miss out on our exciting alumni gatherings</p>
               </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
                 {upcomingEvents.map((event, index) => (
                   <motion.div
                     key={event.id}
@@ -491,22 +491,22 @@ export default function LandingContent() {
 
         {/* Featured Alumni Section */}
         {featuredAlumni.length > 0 && (
-          <div className="bg-white/80 dark:bg-zinc-900/70 backdrop-blur-sm py-20">
+          <div className="bg-white/80 dark:bg-zinc-900/70 backdrop-blur-sm py-10 sm:py-16 md:py-20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               <motion.div
-                className="text-center mb-12"
+                className="text-center mb-8 sm:mb-12"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent px-2">
                   Featured Alumni
                 </h2>
-                <p className="text-xl text-zinc-600 dark:text-zinc-400">Meet some of our accomplished graduates</p>
+                <p className="text-base sm:text-lg md:text-xl text-zinc-600 dark:text-zinc-400 px-2">Meet some of our accomplished graduates</p>
               </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {featuredAlumni.map((alumni, index) => (
                   <motion.div
                     key={alumni.id}
@@ -573,21 +573,21 @@ export default function LandingContent() {
         )}
 
         {/* Quick Links Section */}
-        <div className="bg-white/80 dark:bg-zinc-900/70 backdrop-blur-sm py-20">
+        <div className="bg-white/80 dark:bg-zinc-900/70 backdrop-blur-sm py-10 sm:py-16 md:py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <motion.div
-              className="text-center mb-12"
+              className="text-center mb-8 sm:mb-12"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent px-2">
                 Explore More
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               {[
                 { icon: Calendar, title: "Events", description: "Join upcoming alumni events", href: "/login", color: "green" },
                 { icon: Briefcase, title: "Jobs", description: "Find career opportunities", href: "/login", color: "blue" },
@@ -604,13 +604,13 @@ export default function LandingContent() {
                     transition={{ delay: index * 0.1, duration: 0.5 }}
                   >
                     <Card className="hover:shadow-xl transition-shadow cursor-pointer h-full">
-                      <CardContent className="p-6 text-center">
-                        <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-${link.color}-100 dark:bg-${link.color}-900 mb-4`}>
-                          <Icon className={`w-8 h-8 text-${link.color}-600 dark:text-${link.color}-400`} />
+                      <CardContent className="p-5 sm:p-6 text-center">
+                        <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-${link.color}-100 dark:bg-${link.color}-900 mb-3 sm:mb-4`}>
+                          <Icon className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-${link.color}-600 dark:text-${link.color}-400`} />
                         </div>
-                        <h3 className="text-xl font-semibold mb-2 text-zinc-900 dark:text-zinc-100">{link.title}</h3>
-                        <p className="text-zinc-600 dark:text-zinc-400 mb-4">{link.description}</p>
-                        <Button asChild variant="outline" size="sm">
+                        <h3 className="text-lg sm:text-xl font-semibold mb-2 text-zinc-900 dark:text-zinc-100">{link.title}</h3>
+                        <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 mb-3 sm:mb-4">{link.description}</p>
+                        <Button asChild variant="outline" size="sm" className="text-xs sm:text-sm">
                           <Link href={link.href}>Explore</Link>
                         </Button>
                       </CardContent>
@@ -623,7 +623,7 @@ export default function LandingContent() {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-green-500 py-20">
+        <div className="bg-gradient-to-r from-blue-600 to-green-500 py-10 sm:py-16 md:py-20">
           <div className="mx-auto max-w-4xl px-4 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -631,13 +631,13 @@ export default function LandingContent() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 px-2">
                 Ready to Connect?
               </h2>
-              <p className="text-xl text-blue-50 mb-8">
+              <p className="text-base sm:text-lg md:text-xl text-blue-50 mb-6 sm:mb-8 px-2">
                 Join thousands of alumni already connected in our directory
               </p>
-              <Button asChild size="lg" className="bg-white dark:bg-zinc-900 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-zinc-800 px-8 py-6 text-lg font-semibold">
+              <Button asChild size="lg" className="bg-white dark:bg-zinc-900 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-zinc-800 w-full sm:w-auto px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg font-semibold">
                 <Link href="/register">Create Your Profile</Link>
               </Button>
             </motion.div>
@@ -646,9 +646,9 @@ export default function LandingContent() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-blue-900 dark:bg-zinc-900 text-white py-12">
+      <footer className="bg-blue-900 dark:bg-zinc-900 text-white py-8 sm:py-10 md:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
             {/* About Us Column */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -656,11 +656,11 @@ export default function LandingContent() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-2xl font-bold mb-4 text-green-400">About Us</h3>
-              <p className="text-blue-100 dark:text-zinc-300 leading-relaxed mb-4">
-                Zexa Tech School, Ajmer Rajasthan is committed to fostering lifelong connections among our alumni community. Our alumni directory serves as a platform for graduates to reconnect, network, and stay engaged with their alma mater.
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-green-400">About Us</h3>
+              <p className="text-sm sm:text-base text-blue-100 dark:text-zinc-300 leading-relaxed mb-3 sm:mb-4">
+                The Heritage School Kolkata is committed to fostering lifelong connections among our alumni community. Our alumni directory serves as a platform for graduates to reconnect, network, and stay engaged with their alma mater.
               </p>
-              <p className="text-blue-100 dark:text-zinc-300 leading-relaxed">
+              <p className="text-sm sm:text-base text-blue-100 dark:text-zinc-300 leading-relaxed">
                 We believe in the power of community and the lasting bonds formed during your time at our institution. Join us in building a stronger, more connected alumni network.
               </p>
             </motion.div>
@@ -672,17 +672,17 @@ export default function LandingContent() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h3 className="text-2xl font-bold mb-4 text-green-400">Contact Us</h3>
-              <div className="space-y-4 text-blue-100 dark:text-zinc-300">
+              <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-green-400">Contact Us</h3>
+              <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-blue-100 dark:text-zinc-300">
                 <div>
                   <p className="font-semibold text-white mb-1">Address</p>
-                  <p>Zexa Tech School</p>
-                  <p>Ajmer, Rajasthan, India</p>
+                  <p>The Heritage School</p>
+                  <p>Kolkata, India</p>
                 </div>
                 <div>
                   <p className="font-semibold text-white mb-1">Email</p>
-                  <a href="mailto:info@zexatechschool.edu" className="hover:text-green-400 transition-colors">
-                    info@zexatechschool.edu
+                  <a href="mailto:info@theheritageschoolkolkata.edu" className="hover:text-green-400 transition-colors">
+                    info@theheritageschoolkolkata.edu
                   </a>
                 </div>
                 <div>
@@ -716,9 +716,12 @@ export default function LandingContent() {
           </div>
 
           {/* Footer Bottom */}
-          <div className="mt-8 pt-8 border-t border-blue-800 dark:border-zinc-700 text-center">
-            <p className="text-blue-200 dark:text-zinc-400 text-sm">
-              © {new Date().getFullYear()} Zexa Tech School, Ajmer Rajasthan. All rights reserved.
+          <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-blue-800 dark:border-zinc-700 text-center">
+            <p className="text-blue-200 dark:text-zinc-400 text-xs sm:text-sm px-2">
+              © {new Date().getFullYear()} The Heritage School Kolkata. All rights reserved.
+            </p>
+            <p className="text-blue-200/60 dark:text-zinc-400/60 text-xs px-2 mt-1">
+              Developed and marketing by Shreyash Patni
             </p>
           </div>
         </div>

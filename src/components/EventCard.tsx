@@ -34,7 +34,7 @@ export function EventCard({ event }: EventCardProps) {
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
       {event.image_url && (
-        <div className="relative h-48 w-full">
+        <div className="relative h-40 sm:h-48 w-full">
           <Image
             src={event.image_url}
             alt={event.title}
@@ -43,9 +43,9 @@ export function EventCard({ event }: EventCardProps) {
           />
         </div>
       )}
-      <CardContent className="p-6">
-        <div className="flex items-start justify-between mb-3">
-          <h3 className="text-xl font-semibold text-zinc-900 line-clamp-2">
+      <CardContent className="p-4 sm:p-6">
+        <div className="flex items-start justify-between mb-2 sm:mb-3">
+          <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 line-clamp-2 flex-1 pr-2">
             {event.title}
           </h3>
           {isPast && <Badge variant="secondary">Past</Badge>}
@@ -53,12 +53,12 @@ export function EventCard({ event }: EventCardProps) {
         </div>
 
         {event.description && (
-          <p className="text-zinc-600 text-sm mb-4 line-clamp-2">
+          <p className="text-zinc-600 text-xs sm:text-sm mb-3 sm:mb-4 line-clamp-2">
             {event.description}
           </p>
         )}
 
-        <div className="space-y-2 text-sm text-zinc-600">
+        <div className="space-y-2 text-xs sm:text-sm text-zinc-600">
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4 text-blue-600" />
             <span>{format(eventDate, "PPP 'at' p")}</span>
@@ -96,8 +96,8 @@ export function EventCard({ event }: EventCardProps) {
         </div>
       </CardContent>
 
-      <CardFooter className="pt-0 pb-6 px-6">
-        <Button asChild className="w-full">
+      <CardFooter className="pt-0 pb-4 sm:pb-6 px-4 sm:px-6">
+        <Button asChild className="w-full text-sm sm:text-base">
           <Link href={`/events/${event.id}`}>View Details</Link>
         </Button>
       </CardFooter>
